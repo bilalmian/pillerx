@@ -3,22 +3,22 @@ var mysql = require('mysql');
 var expressHandlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
-// var sequelize = new Sequelize('medications','root');
+var sequelize = new Sequelize('medications','root');
 var path = require('path');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
-var sequelize = new Sequelize('mysql://vwbiqiipier8vg4w:x4w7kuekbqv769ow@g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/wam6253jk4bjwfq5?sslca=rds-combined-ca-bundle.pem&ssl-verify-server-cert', {
- define: { timestamps: false },
- dialect: 'mysql',
- pool: {
-     max: 5,
-     min: 0,
-     idle: 10000
- },
+// var sequelize = new Sequelize('mysql://vwbiqiipier8vg4w:x4w7kuekbqv769ow@g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/wam6253jk4bjwfq5?sslca=rds-combined-ca-bundle.pem&ssl-verify-server-cert', {
+//  define: { timestamps: false },
+//  dialect: 'mysql',
+//  pool: {
+//      max: 5,
+//      min: 0,
+//      idle: 10000
+//  },
 
-})
+// })
  
 var PORT = process.env.NODE_ENV || 3000;
 
