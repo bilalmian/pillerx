@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Piller</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/demo.css" />
+<!--   <link rel="stylesheet" type="text/css" href="css/component.css" />   -->
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+
+
+</head>
+<body data-type="index">
+  <div class="container-demo-1">
+    <div class="content">
+      <div id="large-header" class="large-header">
+        <canvas id="demo-canvas"></canvas>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center red-text">Piller</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Place to keep your pills</h5>
+      </div>
+      <div class="row center">
+        <div class ="frontButtons">
+          <!-- sign up form modal -->
+          <a class="btn waves-effect waves-light modal-trigger red" mod="#modal1">Sign Up</a>
+          <button type="button" class="btn btn-medium waves-effect waves-blue blue" type="button" name="action" id="loginButton">Login</button>
+        </div>
+        <!-- pill --> 
+        <!-- <div id="pillHolder">
+            <img src="./assets/images/whitePill.png" id = "whitePill">
+            <img src="./assets/images/redPill.png" id = "redPill">
+        </div> -->
+      </div>
+
+      <!-- Sign up Modal  -->
+      <div id='modal1' class='modal'>
+        <div class='modal-content'>
+          <div class='row'>
+            <form class="col s12 offset-s3" method='POST' action='/newuser'>
+              <div class='row'>
+                <div class='input-field col s3'>
+                  <input id='first_name' name='first_name' type='text' class='validate'>
+                  <label for='first_name'>First Name</label>
+                </div>
+                <div class='input-field col s3'>
+                  <input id='last_name' name='last_name' type='text' class='validate'>
+                  <label for='last_name'>Last Name</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s6'>
+                  <input id='street' name='street' type='text' class='validate'>
+                  <label for='street'>House Number and Street</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s2'>
+                  <input id='city' name='city' type='text' class='validate'>
+                  <label for='city'>City</label>
+                </div>
+                <div class='input-field col s2'>
+                  <input id='state' name='state' type='text' class='validate'>
+                  <label for='state'>State</label>
+                </div>
+                <div class='input-field col s2'>
+                  <input id='zip' name='zip' type='text' class='validate'>
+                  <label for='zip'>Zipcode</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class="input-field col s6">
+
+                  <input id="phone_number" name='phone_number' type="tel" class="validate">
+                  <label for="phone_number">Telephone</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s6'>
+                  <input id='email' name='email' type='text' class='validate'>
+                  <label for='email'>Email (will be used as your username)</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s6'>
+                  <input id='pass' name='pass' type='text' class='validate'>
+                  <label for='pass'>Select a Password</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s1 offset-s2'>
+                 <button class="btn-flat waves-effect waves-light modal-close" type="submit" id= 'submit' name="action">Submit
+                 </button>
+               </div>
+             </div>
+
+
+           </form>
+         </div>
+       </div>
+     </div>
+      
+
+
+
+
+      <!-- login form hidden -->
+                <div class="row center" id="hide">
+                  <div class="col s4 offset-s4">
+                      <div class="row">
+                          <form class="col s12" method='POST' action='/login'>
+                              <div class="row">
+                                  <div class="input-field col s12">
+                                      <input id="logEmail" name="logEmail" type='text' class="validate">
+                                      <label for="email">Email</label>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="input-field col s12">
+                                      <input id="logPass" name="logPass" type='password'  class="validate">
+                                      <label for="logPass">Password</label>
+                                  </div>
+                              </div>
+                              <div class="col m4">
+                                  <p>
+                                      <input type="checkbox" id="remember">
+                                      <label for="remember">Remember me</label>
+                                  </p>
+                              </div>
+                              <div class="col m4">
+                                  <p class="right-align">
+                                      <button class="btn btn-small waves-effect waves-blue red" type="button" name="action" id="backButton">back</button>
+                                  </p>
+                              </div>
+                              <div class="col m4">
+                                  <p class="right-align">
+                                      <button class="btn btn-large waves-effect waves-blue blue" type="submit" name="action" id="logSubmit">Login</button>
+                                  </p>
+                              </div>
+
+                          </form>
+                      </div>
+                  </div>
+                </div>
+    </div>
+  </div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+  <div class="container" id="columns">
+    <div class="section">
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <!-- pill --> 
+          <div class ="center" id="pillHolder">
+            <img src="images/pill.png" id = "pill">
+          </div>
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons"></i></h2>
+          </div>
+          <h5 class="center">Manage your medicine</h5>
+          <p class="light">Keep all of your medicine organized. You can put in the mediciation you are taking and the dosage. PillEr also provides the information on what the medicine does.</p>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block center">
+            <img src="images/doctor_icon.gif" id="doc">
+            <h5 class="center">Doctors</h5>
+            <p class="light">By utilizing this app, you'll be able to send have your medicine and be able to send it to any doctor you would like. You will be able to show doctors what medicine you are currently taking.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block center">
+            <img src="images/pharmacy.png">
+            <h5 class="center">Pharmacies</h5>
+            <p class="light">Be able to locate nearby pharmacies and send a prescription. This app will allow you to place a date when you have picked up your medicine and when you need a refill.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</div>
+
+
+
+
+  <!--  Scripts-->
+  <script src="js/TweenLite.min.js"></script>
+  <script src="js/EasePack.min.js"></script> 
+  <script src="js/rAF.js"></script>    
+  <script src="js/demo-1.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/main.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Piller</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/demo.css" />
+<!--   <link rel="stylesheet" type="text/css" href="css/component.css" />   -->
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+
+<header>
+<ul id="nav" class="side-nav fixed" style= "transform: translateX(0%)">
+       <li class="logo center">
+  <a id="logo-container" class="brand-logo">
+          <img src="images/logo.png" id="logo">
+</a>
+</li>
+       <li><a id="container" class="modal-trigger" data-target="modal6">
+           
+           <span class="black-text" id='userInfo'> 
+       
+           </span></a>
+       </li>
+       <li class="bold"><a mod="#alerts" class="waves-effect modal-trigger waves-red" data-target="#alerts" >Alerts</a></li>
+       <li class="bold"><a mod="#doctors" data-value='4' data-target="#modal4" class="waves-effect modal-trigger waves-red">Doctors</a></li>
+       <li class="bold"><a mod="#pharmacies" data-target="#modal5" class="waves-effect modal-trigger waves-red">Pharmacies</a></li>
+<li class="bold"><a mod="#interactions" data-target="#modal6" data-value='6' class="waves-effect modal-trigger waves-red">Interactions</a></li>
+</ul>
+ <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+ </header>
+    <!-- Page Layout here -->
+    <div class="row">
+
+      <div class="col s10 offset-s1"> <!-- Note that "m8 l9" was added -->
+        <div class="section no-pad-bot" id="index-banner">
+          <div class="container">
+          <br>
+
+
+        <!-- collection of medicine -->
+
+            <div class="collection" id='medCollect'>
+              <ul class='collapsible' id='medField' data-collapsible='accordion'>
+          
+              </ul>
+            </div>
+            <div class="row center">
+      <!-- button -->
+              <a class="waves-effect waves-light btn modal-trigger red" data-target="#modal2" data-value="2" mod="#modal2">Add Medication</a>
+            </div>
+            <br><br>
+          </div>
+      
+  <!-- right side bar -->
+         <!--  <div id="rbar" class="col m3 l1 right">
+            <div>
+              <ul>
+                <li><h5>date filled</h5><p>{{prescrip.filled}}</li>
+                <li><h5>amount days</h5><p>{{req.body.length}}</li>
+                <li><h5>refills</h5><p>{{req.body.refLeft}}</li>
+              </ul>
+            </div>
+          </div> -->
+
+
+
+
+  <!-- <div class="container">
+    <div class="section">
+
+      
+      <div class="row">
+          <div class="col s12 m6">
+              <div class="icon-block">
+                <h5 class="center">Directions</h5>
+                <p class="light">{{prescr.directions}}</p>
+                <br>
+                <h5 class="center">Notes</h5>
+                <p class="light">{{prescr.notes}}</p>
+              </div>  
+          </div>
+
+          <div class="col s12 m6">
+              <div class="icon-block">
+                <h5 class="center">Directions</h5>
+                <p class="light">{{prescr.directions}}</p>
+                <br>
+                <h5 class="center">Info</h5>
+                <p class="light">Dose: {{prescr.dose}}</p>
+                <p class="light">Time of Day {{x}}</p>
+                <p class="light">With food {{prescr.food}}
+              </div>
+          </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
+ -->
+
+
+
+  <!-- modal for prescription -->
+    <div id='modal2' class='modal'>
+      <div class='modal-content'>
+        <div class='row col s12'>
+          <form class="col s12" id="medForm">
+            <div class='row'>
+              <div class='input-field col s4'>
+              <input id='med_name' name='med_name' type='text' class='validate'>
+              <label for='med_name'>Medication Name</label>
+              </div>
+              <div class='input-field col s2'>
+              <input id='dose' name='dose' type='text' class='validate'>
+              <label for='dose'>Dose (Mg)</label>
+              </div>
+              <div class='input-field col s4'>
+                <select id='tOd' name='tOd' multiple>
+                  <option value='' disabled selected>Choose your option</option>
+                  <option value='1'>Morning</option>
+                  <option value='2'>Midday</option>
+                  <option value='3'>Evening</option>
+                  </select>
+                <label>Time of Day</label>
+              </div>
+              <div class='input-field col s1'>
+                <input type='checkbox' name='food' id='food' />
+                <label for='food'>Take with Food</label>
+              </div>
+
+            </div>
+            <div class='row'>
+              <div class='input-field col s3'>
+                <input type="date" name='filled' id='filled' class="datepicker">
+                <label for='filled'>Date Filled</label>
+              </div>
+              <div class='input-field col s4'>
+                <input id='length' name='length' type='text' class='validate'>
+                <label for='length'>Amount (in Days)</label>
+              </div>
+              <div class='input-field col s4'>
+                <input id='refLeft' type='text' name='refLeft' class='validate'>
+                <label for='refLeft'>Amount of Refills Left</label>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='input-field col s4'>
+                <input id='doc' name='doc' type='text' class='validate'>
+                <label for='doc'>Perscribing Doctor</label>
+              </div>
+              <div class='input-field col s4'>
+                <input id='pharm' name='pharm' type='text' class='validate'>
+                <label for='pharm'>Pharmacy Name</label>
+              </div>
+            </div>
+            <div class='row'>
+              <div class="input-field col s6">
+                      <textarea id="directions" name='directions' class="materialize-textarea"></textarea>
+                      <label for="directions">Doctor Directions</label>
+                  </div>
+                  <div class="input-field col s6">
+                      <textarea id="notes" name='notes' class="materialize-textarea"></textarea>
+                      <label for="notes">Personal Notes</label>
+                  </div>
+                </div>
+
+            <div class='row'>
+              <div class='input-field col s1 offset-s4'>
+                 <button class="btn-flat waves-effect waves-light modal-close" type="submit" id= 'submit' name="action">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+<!-- modal for alerts -->
+
+    <div id='alerts' class='modal' data-value='4'>
+      <div class='modal-content'>
+        <div class='row col s12'> 
+          <div class="row center">
+            <h4>ALERTS</h4>
+          </div>
+          <div class ="row col s12">
+            <p>{{interactions}}</p>
+          </div>
+          <div class="row">
+            <button class="btn-flat waves-effect waves-light modal-close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal for doctor -->
+    <div id='doctors' class='modal'>
+      <div class='modal-content'>
+        <div class='row col s12'>
+          <div id='docList' class="row center">
+           <h4>Your doctors are:</h4>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn-flat waves-effect waves-light modal-close">Close</button>
+        </div>
+      </div>
+    </div>
+
+
+<!-- modal for pharmacies -->
+    <div id='pharmacies' class='modal'>
+      <div class='modal-content'>
+        <div class='row col s12'>
+          <div class="row center">
+           <h4>Your current pharamcies are:</h4>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn-flat waves-effect waves-light modal-close">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div id='interactions' class='modal'>
+      <div class='modal-content'>
+        <div class='row col s12'>
+          <div id='interList' class="row center">
+           <h4>Interactions have been found between:</h4>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn-flat waves-effect waves-light modal-close">Close</button>
+        </div>
+      </div>
+    </div>
+
+
+<!-- modal for profile -->
+<div id='modal6' class='modal'>
+        <div class='modal-content'>
+          <div class='row'>
+            <form class="col s12 offset-s3" method='POST' action='/newuser'>
+              <div class='row'>
+                <div class='input-field col s3'>
+                  <input id='first_name' name='first_name' type='text' class='validate'>
+                  <label for='first_name'>First Name</label>
+                </div>
+                <div class='input-field col s3'>
+                  <input id='last_name' name='last_name' type='text' class='validate'>
+                  <label for='last_name'>Last Name</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s6'>
+                  <input id='street' name='street' type='text' class='validate'>
+                  <label for='street'>House Number and Street</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s2'>
+                  <input id='city' name='city' type='text' class='validate'>
+                  <label for='city'>City</label>
+                </div>
+                <div class='input-field col s2'>
+                  <input id='state' name='state' type='text' class='validate'>
+                  <label for='state'>State</label>
+                </div>
+                <div class='input-field col s2'>
+                  <input id='zip' name='zip' type='text' class='validate'>
+                  <label for='zip'>Zipcode</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class="input-field col s6">
+
+                  <input id="icon_telephone" name='telephone' type="tel" class="validate">
+                  <label for="icon_telephone">Telephone</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s6'>
+                  <input id='email' name='email' type='text' class='validate'>
+                  <label for='email'>Email (will be used as your username)</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s6'>
+                  <input id='pass' name='pass' type='text' class='validate'>
+                  <label for='pass'>Select a Password</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s1 offset-s2'>
+                 <button class="btn-flat waves-effect waves-light modal-close" type="submit" id= 'submit' name="action">Submit
+                 </button>
+               </div>
+             </div>
+           </form>
+         </div>
+       </div>
+     </div>
+
+  <!--  Scripts-->
+  <script src="js/TweenLite.min.js"></script>
+  <script src="js/EasePack.min.js"></script> 
+  <script src="js/rAF.js"></script>    
+  <script src="js/demo-1.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/main.js"></script>
+
+  </body>
+</html>
+
+          
+
