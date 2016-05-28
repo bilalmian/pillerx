@@ -43,11 +43,11 @@ LOCK TABLES `prescriptions` WRITE;
 INSERT INTO `prescriptions` (`id`, `medname`, `dose`, `time_of_day`, `with_food`, `date_filled`, `amount_days`, `refills`, `prescribing_doctor`, `pharm_name`, `directions`, `notes`, `rxuid`, `createdAt`, `updatedAt`, `clientId`)
 VALUES
 	(2,'Tylenol','20mg','0',NULL,'2 May, 2016','30','3','Dr. Ouch','Rite Aid','Take when it hurts.','','202433','2016-05-28 17:27:51','2016-05-28 17:27:51',1),
-	(4,'allegra','30','0',NULL,'13 May, 2016','23','3','Dr. Pollen','CVS','Take everyday because nature.','','324026','2016-05-28 17:29:42','2016-05-28 17:29:42',NULL),
-	(5,'Aluminum Hydroxide','40mg','0',NULL,'11 May, 2016','34','4','Dr. Metal','Rite Aid','IDK tbh','','612','2016-05-28 17:30:15','2016-05-28 17:30:15',NULL),
-	(6,'Acebutolol','40','0',NULL,'3 May, 2016','60','1','Dr. Lol','Local Pharmacy','Take whenever I guess','','149','2016-05-28 17:31:01','2016-05-28 17:31:01',NULL),
-	(7,'Prozac','50','0',NULL,'10 May, 2016','30','1','Dr. Happy','Walmart','Take everyday b/c life  ','','58827','2016-05-28 17:32:02','2016-05-28 17:32:02',NULL),
-	(9,'Prilosec','30','0',NULL,'11 May, 2016','30','2','Dr. Tums','CVS','Take with food','','203345','2016-05-28 17:33:19','2016-05-28 17:33:19',NULL);
+	(4,'allegra','30','0',NULL,'13 May, 2016','23','3','Dr. Pollen','CVS','Take everyday because nature.','','324026','2016-05-28 17:29:42','2016-05-28 17:29:42',1),
+	(5,'Aluminum Hydroxide','40mg','0',NULL,'11 May, 2016','34','4','Dr. Metal','Rite Aid','IDK tbh','','612','2016-05-28 17:30:15','2016-05-28 17:30:15',1),
+	(6,'Acebutolol','40','0',NULL,'3 May, 2016','60','1','Dr. Lol','Local Pharmacy','Take whenever I guess','','149','2016-05-28 17:31:01','2016-05-28 17:31:01',1),
+	(7,'Prozac','50','0',NULL,'10 May, 2016','30','1','Dr. Happy','Walmart','Take everyday b/c life  ','','58827','2016-05-28 17:32:02','2016-05-28 17:32:02',1),
+	(9,'Prilosec','30','0',NULL,'11 May, 2016','30','2','Dr. Tums','CVS','Take with food','','203345','2016-05-28 17:33:19','2016-05-28 17:33:19',1);
 
 /*!40000 ALTER TABLE `prescriptions` ENABLE KEYS */;
 UNLOCK TABLES;

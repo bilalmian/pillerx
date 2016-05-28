@@ -19,8 +19,8 @@ var cookieParser = require('cookie-parser');
 //  },
 
 // })
- 
-var PORT = process.env.NODE_ENV || 3000;
+
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 
