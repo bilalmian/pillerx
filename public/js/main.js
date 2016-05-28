@@ -30,6 +30,8 @@ $(document).ready(function(){
 				complete: function(){console.log('closing!!')
 								$('form').find('input[type=text], input[type=checkbox], textarea').val('');
 								$('select').material_select();
+								$("#interList").html('');
+								$("#interList").html('<h4>Interactions have been found between:</h4>');
 								}
 			});
 
@@ -115,62 +117,73 @@ $(document).ready(function(){
 
 			}else if($(this).attr('data-value')==6){
 				checkInteractions()
-
-
-
-
 			}			
 		});
+var answer;
 
 
 		function checkInteractions(){
 			
 			$.post('/check', function(data, textStatus, xhr) {
 				console.log("got back from checking route")
+				
 				var problems = [];
+				
 				var presentMeds = [];
 				for(var l=0; l<data.length; l++){
 					presentMeds.push(data[l])
 				};
-				for(var i=0; i<presentMeds.length; i++){
-				    jQuery.ajax({
-				        url: "https://rxnav.nlm.nih.gov/REST/interaction/interaction.json?rxcui=" + presentMeds[i].rxuid,
-				        async: false,
-				        success: function (result) {
-				        	console.log(results);
-								var cases = getCases(result);
-								var problems2 = [];
-								for(var j=0; j<cases.length; j++){
-									var here = cases[j];
-									for(var k=0; k<presentMeds.length; k++){
-										if(presentMeds[k].rxuid == here.rxcui){
-											problems2.push(here);
-										}
-									}
-								};
-								for (var m=0; m< problems2.length; m++){
-									var med2 = presentMeds[i];
-									var problem = {
-												mednameOne: med2.medname,
-												medcodeOne: med2.rxuid,
-												mednameTwo: problems2[m].name,
-												medcodeTwo: problems2[m].rxcui,
-												effect: problems2[m].effect
-											};
-									problems.push(problem)
-								}					
-					    },			        	
-			    	});
-				};								
-			interactionsData(problems);
+				
+
+			console.log(presentMeds);
+			startAjax(presentMeds);
+
 			});
+
+
 		};
 
-//sorts api json response blah blah
+		function startAjax(array){
+			console.log("got to start AJax");
+			console.log(array);
+			var getarray = [],
+			i, len;
 
-		function getCases(response){
+			for(i=0, len=array.length; i<len; i+=1){
+				getarray.push(runAjax(array[i], array));
+			};
+
+			$.when.apply($, getarray).done(function(){
+				console.log("we got done");
+
+			});
+		}
+		
+
+
+		function runAjax(r, array){
+			console.log(r);
+			jQuery.ajax({
+			    url: "https://rxnav.nlm.nih.gov/REST/interaction/interaction.json?rxcui=" + r.rxuid,
+			    success: function(result){
+			    			console.log("wehitit");
+			    			console.log(r);
+			    			console.log(array);
+			    			getCases(result, r, array);
+						},
+			})
+
+		}
+
+
+		function getCases(response, presents, array){
+
 			console.log("went to sort")
+			console.log("response: " + response);
+			console.log("presents: " + presents);
+			console.log("array: "+ array);
 			var cases = [];
+			var problems =[];
 			for(var i=0; i<response.interactionTypeGroup[0].interactionType[0].interactionPair.length;i++){
 				var otherRX = response.interactionTypeGroup[0].interactionType[0].interactionPair[i].interactionConcept[1].minConceptItem.rxcui;
 				var otherRXname = response.interactionTypeGroup[0].interactionType[0].interactionPair[i].interactionConcept[1].minConceptItem.name;
@@ -182,17 +195,107 @@ $(document).ready(function(){
 						effect: otherRXeffects}		
 				cases.push(crase)
 			};
-			return cases;	
+			var problems2 = [];
+			for(var j=0; j<cases.length; j++){
+
+				var here = cases[j];
+				for(var k=0; k<array.length; k++){
+					if(array[k].rxuid == here.rxcui){
+						problems2.push(here);
+					}
+				}
+			};
+			for (var m=0; m< problems2.length; m++){
+				
+
+				var med2 = presents;
+				var problem = {
+							mednameOne: med2.medname,
+							medcodeOne: med2.rxuid,
+							mednameTwo: problems2[m].name,
+							medcodeTwo: problems2[m].rxcui,
+							effect: problems2[m].effect
+						};
+				problems.push(problem)
+			}
+
+			debugger;
+			console.log("Here are the problems:")
+			console.log(problems);
+
+			for(var z= 0; z<problems.length; z++){
+				$("#interList").append("<p>"+problems[z].mednameOne+" interacts with "+problems[z].mednameTwo+" because "+problems[z].effect+"</p")
+			}
+			
+
 		};
+
+
+
+
+
+
+
+
+
+
+		// 		for(var i=0; i<presentMeds.length; i++){
+		// 		    jQuery.ajax({
+		// 		        url: "https://rxnav.nlm.nih.gov/REST/interaction/interaction.json?rxcui=" + presentMeds[i].rxuid,
+		// 		        async: false,
+		// 		        success: function (result) {
+		// 		        	console.log(result);
+
+		// 						var cases = getCases(result);
+		// 						var problems2 = [];
+		// 						for(var j=0; j<cases.length; j++){
+		// 							var here = cases[j];
+		// 							for(var k=0; k<presentMeds.length; k++){
+		// 								if(presentMeds[k].rxuid == here.rxcui){
+		// 									problems2.push(here);
+		// 								}
+		// 							}
+		// 						};
+		// 						for (var m=0; m< problems2.length; m++){
+		// 							var med2 = presentMeds[i];
+		// 							var problem = {
+		// 										mednameOne: med2.medname,
+		// 										medcodeOne: med2.rxuid,
+		// 										mednameTwo: problems2[m].name,
+		// 										medcodeTwo: problems2[m].rxcui,
+		// 										effect: problems2[m].effect
+		// 									};
+		// 							problems.push(problem)
+		// 						}					
+		// 			    },			        	
+		// 	    	});
+		// 		};								
+		// 	interactionsData(problems);
+		// 	});
+		// };
+
+//sorts api json response blah blah
+
+		// function getCases(response){
+		// 	console.log("went to sort")
+		// 	var cases = [];
+		// 	for(var i=0; i<response.interactionTypeGroup[0].interactionType[0].interactionPair.length;i++){
+		// 		var otherRX = response.interactionTypeGroup[0].interactionType[0].interactionPair[i].interactionConcept[1].minConceptItem.rxcui;
+		// 		var otherRXname = response.interactionTypeGroup[0].interactionType[0].interactionPair[i].interactionConcept[1].minConceptItem.name;
+		// 		var otherRXeffects = response.interactionTypeGroup[0].interactionType[0].interactionPair[i].description;
+				
+		// 		var crase = {
+		// 				rxcui: otherRX,
+		// 				name: otherRXname,
+		// 				effect: otherRXeffects}		
+		// 		cases.push(crase)
+		// 	};
+		// 	return cases;	
+		// };
 		
 
 //this is where we get an array of objects, each of which contains the two interacting drugs present in the user's db and the effect that mixing them has. This is from where we program the alerts, etc.
 
-		function interactionsData (data){
-			console.log("WE GOT HERE!")
-			console.log(data);
-			$("#interList").append()
-		}
 
 		
 //*******************************************************
