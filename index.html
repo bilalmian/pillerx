@@ -117,34 +117,36 @@
                 <div class="row center" id="hide">
                   <div class="col s4 offset-s4">
                       <div class="row">
-                          <form class="col s12" method='POST' action='/login'>
-                              <div class="row">
+                          <form class="row" method='POST' action='/login'>
+                              <div id='namerow' class="row">
                                   <div class="input-field col s12">
                                       <input id="logEmail" name="logEmail" type='text' class="validate">
                                       <label for="email">Email</label>
                                   </div>
                               </div>
-                              <div class="row">
+                              <div id='passrow' class="row">
                                   <div class="input-field col s12">
                                       <input id="logPass" name="logPass" type='password'  class="validate">
                                       <label for="logPass">Password</label>
                                   </div>
                               </div>
-                              <div class="col m4">
-                                  <p>
+                              <div class='row'>
+                            
+                              <div id='bnlbuttons'>
+                                  <span class="right-align">
+                                      <button class="btn btn-small waves-effect waves-blue red" type="button" name="action" id="backButton">back</button>
+                                  </span>
+                              
+                                  <span class="right-align">
+                                      <button class="btn btn-small waves-effect waves-blue blue" type="submit" name="action" id="logSubmit">Login</button>
+                                  </span>
+                              </div>
+                               <div id='remember'>
+                                  <span>
                                       <input type="checkbox" id="remember">
                                       <label for="remember">Remember me</label>
-                                  </p>
+                                  </span>
                               </div>
-                              <div class="col m4">
-                                  <p class="right-align">
-                                      <button class="btn btn-small waves-effect waves-blue red" type="button" name="action" id="backButton">back</button>
-                                  </p>
-                              </div>
-                              <div class="col m4">
-                                  <p class="right-align">
-                                      <button class="btn btn-large waves-effect waves-blue blue" type="submit" name="action" id="logSubmit">Login</button>
-                                  </p>
                               </div>
 
                           </form>

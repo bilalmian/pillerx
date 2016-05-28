@@ -48,34 +48,13 @@
   	overflow: visible;
 }
 
-#medCollect{
-	width: 100%;
-}
-.collapsible-body p{
-	padding-top: 5px;
-	font-family: "Roboto", sans-serif;
-}
+
 /*dashboard*/
 /*side bar*/
-header, main, body, footer {
-      padding-left: 240px;
-    }
-.done button{
-	top: -20px;
-}
-#rbar{
-	width: 80px;
-}
-    
-
 .side-nav{
-	width: 240px;
-
-
 
 }
 #logo{
 	width:125px;
 	margin:20px 20px 20px 20px;
-
 }
