@@ -30,8 +30,8 @@ $(document).ready(function(){
 				complete: function(){console.log('closing!!')
 								$('form').find('input[type=text], input[type=checkbox], textarea').val('');
 								$('select').material_select();
-								$("#interList").html('');
-								$("#interList").html('<h4>Interactions have been found between:</h4>');
+								// $("#interList").html('');
+								// $("#interList").html('<h4>Interactions have been found between:</h4>');
 								}
 			});
 
