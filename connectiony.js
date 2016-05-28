@@ -9,7 +9,7 @@ var bcrypt = require('bcrypt');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
-var sequelize = new Sequelize('mysql://irri1wgv9ywf9sh6:ya35g8wzdcut6mvf@g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hqj0wz9mwllcl3k6?sslca=rds-combined-ca-bundle.pem&ssl-verify-server-cert', {
+var sequelize = new Sequelize('mysql://vwbiqiipier8vg4w:x4w7kuekbqv769ow@g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/wam6253jk4bjwfq5?sslca=rds-combined-ca-bundle.pem&ssl-verify-server-cert', {
  define: { timestamps: false },
  dialect: 'mysql',
  pool: {
